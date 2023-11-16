@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GorselProgramlamaOdevi.RenkSecici"
+             Title="RenkSecici">
+    <Grid RowDefinitions="*,*" ColumnSpacing="10">
+        <StackLayout Grid.Row="0" Padding="20" >
+            <Label x:Name="labelRed" />
+            <Slider x:Name="sliderRed" ValueChanged="OnSliderValueChanged" Minimum="0" Maximum="255" Margin="10"
+                    MinimumTrackColor="Red"
+            />
+
+            <Label x:Name="labelGreen"  />
+            <Slider x:Name="sliderGreen" ValueChanged="OnSliderValueChanged" Minimum="0" Maximum="255" Margin="10" MinimumTrackColor="Green"/>
+
+            <Label x:Name="labelBlue"  />
+            <Slider x:Name="sliderBlue" ValueChanged="OnSliderValueChanged" Minimum="0" Maximum="255" Margin="10"
+                    MinimumTrackColor="Blue"
+            />
+
+            <StackLayout Orientation="Horizontal"  WidthRequest="100"  Padding="0 ,0, 0, 10" >
+                <Button Text="" x:Name="labelColorCode" Clicked="OnCopyButtonClicked"  VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+
+            <Button Text="Random" Clicked="OnRandomColorButtonClicked" />
+        </StackLayout>
+
+        <BoxView Margin="20" CornerRadius="20" Grid.Row="1"  Color="{Binding Source={x:Reference sliderRed}, Path=Value, Converter={StaticResource ColorConverter}}, {Binding Source={x:Reference sliderGreen}, Path=Value, Converter={StaticResource ColorConverter}}, {Binding Source={x:Reference sliderBlue}, Path=Value, Converter={StaticResource ColorConverter}}" x:Name="colorCanvas" />
+
+    </Grid>
+</ContentPage>
