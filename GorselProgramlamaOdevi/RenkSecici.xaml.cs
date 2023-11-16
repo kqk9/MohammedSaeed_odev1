@@ -8,7 +8,7 @@ public partial class RenkSecici : ContentPage
 
         sliderRed.Value = 255;
         sliderGreen.Value = 0;
-        sliderBlue.Value = 0;
+        sliderBlue.Value = 0;  
 
         UpdateColor();
     }
@@ -17,7 +17,6 @@ public partial class RenkSecici : ContentPage
     {
         UpdateColor();
 
-        // تحديث القيم المجاورة للألوان
         labelRed.Text = $"Kırmızı Ton : {sliderRed.Value}";
         labelGreen.Text = $"Yeşil Ton: {sliderGreen.Value}";
         labelBlue.Text = $"Mavi : {sliderBlue.Value}";
@@ -28,7 +27,6 @@ public partial class RenkSecici : ContentPage
         Color color = Color.FromRgb((int)sliderRed.Value, (int)sliderGreen.Value, (int)sliderBlue.Value);
         colorCanvas.Color = color;
 
-        // Display the color code
         labelColorCode.Text = $"#{ToHex((int)sliderRed.Value)}{ToHex((int)sliderGreen.Value)}{ToHex((int)sliderBlue.Value)}";
     }
 
