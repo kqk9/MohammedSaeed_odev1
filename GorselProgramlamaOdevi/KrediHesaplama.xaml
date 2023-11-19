@@ -1,12 +1,42 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GorselProgramlamaOdevi.KrediHesaplama"
-             Title="KrediHesaplama">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Kredi Hesaplama">
+    <StackLayout Padding="20" Spacing="10">
+        <Picker x:Name="LoanTypePicker" Title="Kredi Türünü Seçin" SelectedIndexChanged="OnPickerSelectedIndexChanged">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>İhtiyaç</x:String>
+                    <x:String>Konut</x:String>
+                    <x:String>Taşıt</x:String>
+                    <x:String>Ticari</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+
+        <Label Text="Kredi Tutarı (TR):"></Label>
+        <Entry x:Name="AmountEntry" Placeholder="Kredi tutarını giriniz" Keyboard="Numeric" />
+
+        <Label Text="Faiz oranı:"></Label>
+        <Entry x:Name="InterestRateEntry" Placeholder="Faiz oranını giriniz" Keyboard="Numeric" />
+
+        <Label Text="Kredi Vadesi (Ay):"></Label>
+        <Entry x:Name="TermEntry" Placeholder="Kredi vadesini giriniz" Keyboard="Numeric" />
+
+        <Button Text="Kredi Hesapla" Clicked="OnCalculateClicked" />
+
+        <StackLayout Margin="10" Orientation="Vertical">
+
+            <Label  Text="Aylık Taksit  : "  x:Name="MonthlyPaymentLabel" />
+        </StackLayout>
+
+        <StackLayout Margin="10" Orientation="Vertical">
+        
+            <Label  Text="Toplam Ödeme  : "   x:Name="TotalPaymentLabel" />
+        </StackLayout>
+
+        <StackLayout Margin="10" Orientation="Vertical">
+            <Label Text="Toplam Faiz  :   "  x:Name="TotalInterestLabel" />
+        </StackLayout>
+    </StackLayout>
 </ContentPage>

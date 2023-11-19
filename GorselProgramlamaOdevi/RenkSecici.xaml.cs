@@ -6,7 +6,7 @@ public partial class RenkSecici : ContentPage
     {
         InitializeComponent();
 
-        sliderRed.Value = 255;
+        sliderRed.Value = 0;
         sliderGreen.Value = 0;
         sliderBlue.Value = 0;  
 

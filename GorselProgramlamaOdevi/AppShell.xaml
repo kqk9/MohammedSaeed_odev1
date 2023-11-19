@@ -8,11 +8,32 @@
 
     <ShellContent
         Title="Home"
+        FlyoutIcon="home.png"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
     <ShellContent
+     Title="Kredi Hesaplama"
+     FlyoutIcon="bank.png"
+     ContentTemplate="{DataTemplate local:KrediHesaplama}"
+     Route="KrediHesaplama" />
+
+    <ShellContent
+     Title="Vucut Kitle Indeksi"
+        FlyoutIcon="calculate.png"
+     ContentTemplate="{DataTemplate local:VucutKitleIndeksi}"
+     Route="VucutKitleIndeksi" />
+    
+    <ShellContent
         Title="Renk Secici"
+        FlyoutIcon="colors.png"
         ContentTemplate="{DataTemplate local:RenkSecici}"
         Route="RenkSecici" />
-        
+    
+    <ShellContent
+     Title="Yapılacaklar"
+        FlyoutIcon="checkbox.png"
+     ContentTemplate="{DataTemplate local:Yapilacaklar}"
+     Route="Yapilacaklar" />
+
+
 </Shell>
