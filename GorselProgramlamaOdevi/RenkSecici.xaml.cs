@@ -1,50 +1,63 @@
-﻿namespace GorselProgramlamaOdevi;
+﻿using System;
+
+namespace GorselProgramlamaOdevi;
 
 public partial class RenkSecici : ContentPage
 {
+
+    Boolean isRandom;
+    String hexValue;
     public RenkSecici()
     {
         InitializeComponent();
 
-        sliderRed.Value = 0;
-        sliderGreen.Value = 0;
-        sliderBlue.Value = 0;  
-
-        UpdateColor();
+      
     }
 
-    private void OnSliderValueChanged(object sender, ValueChangedEventArgs e)
+    private void slider_ValueChanged(object sender, ValueChangedEventArgs e)
     {
-        UpdateColor();
+        if (!isRandom)
+        {
+            var red = sldRed.Value;
+            var green = sldGreen.Value;
+            var blue = sldBlue.Value;
 
-        labelRed.Text = $"Kırmızı Ton : {sliderRed.Value}";
-        labelGreen.Text = $"Yeşil Ton: {sliderGreen.Value}";
-        labelBlue.Text = $"Mavi : {sliderBlue.Value}";
+
+            Color color = Color.FromRgb(red, green, blue);
+            setColor(color);
+        }
+
+
     }
 
-    private void UpdateColor()
+    private void setColor(Color color)
     {
-        Color color = Color.FromRgb((int)sliderRed.Value, (int)sliderGreen.Value, (int)sliderBlue.Value);
-        colorCanvas.Color = color;
+        btnRandom.BackgroundColor = color;
+        Container.BackgroundColor = color;
+        hexValue = color.ToHex();
+        lblHex.Text = hexValue;
 
-        labelColorCode.Text = $"#{ToHex((int)sliderRed.Value)}{ToHex((int)sliderGreen.Value)}{ToHex((int)sliderBlue.Value)}";
     }
 
-    private string ToHex(int value)
+    private void btnRandom_Clicked(object sender, EventArgs e)
     {
-        return value.ToString("X2");
+        isRandom = true;
+        var random = new Random();
+        var color = Color.FromRgb(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256));
+        setColor(color);
+
+        sldRed.Value = color.Red;
+        sldGreen.Value = color.Green;
+        sldBlue.Value = color.Blue;
+        isRandom = false;
+
     }
 
-    private void OnRandomColorButtonClicked(object sender, EventArgs e)
+    private async void ImageButton_Clicked(object sender, EventArgs e)
     {
-        Random random = new Random();
-        sliderRed.Value = random.Next(0, 256);
-        sliderGreen.Value = random.Next(0, 256);
-        sliderBlue.Value = random.Next(0, 256);
-    }
+        await Clipboard.SetTextAsync(lblHex.Text);
 
-    private async void OnCopyButtonClicked(object sender, EventArgs e)
-    {
-        await Clipboard.SetTextAsync(labelColorCode.Text);
     }
 }
+
+
