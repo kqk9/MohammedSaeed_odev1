@@ -55,7 +55,9 @@ public partial class RenkSecici : ContentPage
 
     private async void ImageButton_Clicked(object sender, EventArgs e)
     {
-        await Clipboard.SetTextAsync(lblHex.Text);
+        await Clipboard.SetTextAsync(hexValue);
+        await DisplayAlert("Kopyalandı", $"{hexValue}", "OK");
+
 
     }
 }
